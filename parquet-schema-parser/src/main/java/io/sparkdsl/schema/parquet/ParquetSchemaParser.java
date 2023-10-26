@@ -36,13 +36,11 @@ public class ParquetSchemaParser {
       velocityEngine.init();
 
       Set<String> fields = schema.getColumns().stream().map(ColumnDescriptor::getPath)
-          .map(p -> p[0]).collect(
-              Collectors.toSet());
+          .map(p -> p[0]).collect(Collectors.toSet());
 
       VelocityContext context = new VelocityContext();
       context.put("className", schema.getName());
-      context.put("fields",
-          fields);
+      context.put("fields", fields);
 
       Template template = velocityEngine.getTemplate("class-template.vm");
       StringWriter writer = new StringWriter();
