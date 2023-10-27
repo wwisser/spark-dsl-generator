@@ -1,5 +1,4 @@
-package io.sparkdsl;
-
+package io.sparkdsl.codegen.maven;
 
 import static org.apache.maven.plugins.annotations.LifecyclePhase.GENERATE_SOURCES;
 import static org.apache.maven.plugins.annotations.ResolutionScope.TEST;
