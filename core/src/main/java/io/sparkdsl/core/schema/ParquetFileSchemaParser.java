@@ -20,8 +20,7 @@ public class ParquetFileSchemaParser implements SchemaParser<String> {
       Configuration configuration = new Configuration();
       configuration.set("fs.defaultFS", "file:///");
 
-      InputFile inputFile =
-          HadoopInputFile.fromPath(new Path("sample.parquet"), new Configuration());
+      InputFile inputFile = HadoopInputFile.fromPath(new Path(filePath), configuration);
 
       try (ParquetFileReader reader = ParquetFileReader.open(inputFile)) {
         ParquetMetadata parquetMetadata = reader.getFooter();
