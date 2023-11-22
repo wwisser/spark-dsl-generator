@@ -1,0 +1,8 @@
+import org.apache.spark.sql.Column;
+import static org.apache.spark.sql.functions.col;
+
+public final class ${className} {
+#foreach($field in $fields)
+  public static final Column ${field.toUpperCase()} = col("${field}");
+#end
+}
