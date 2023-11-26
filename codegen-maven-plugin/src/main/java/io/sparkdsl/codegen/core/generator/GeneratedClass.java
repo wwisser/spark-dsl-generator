@@ -1,4 +1,4 @@
-package io.sparkdsl.core.generator;
+package io.sparkdsl.codegen.core.generator;
 
 import lombok.Value;
 

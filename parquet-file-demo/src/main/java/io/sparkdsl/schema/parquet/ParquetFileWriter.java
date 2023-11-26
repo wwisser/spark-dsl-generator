@@ -24,10 +24,10 @@ public class ParquetFileWriter {
     Configuration configuration = new Configuration();
     configuration.set("fs.defaultFS", DEFAULT_FS);
 
-    Schema schema = SchemaBuilder.record("User")
+    Schema schema = SchemaBuilder.record("Animal")
         .fields()
-        .requiredString("first_name")
-        .requiredString("last_name")
+        .requiredString("kind")
+        .requiredString("name")
         .requiredInt("age")
         .endRecord();
 
@@ -39,15 +39,15 @@ public class ParquetFileWriter {
         .build()) {
 
       GenericRecord john = new GenericData.Record(schema);
-      john.put("first_name", "John");
-      john.put("last_name", "Doe");
-      john.put("age", 30);
+      john.put("kind", "Cat");
+      john.put("name", "Foo");
+      john.put("age", 5);
       writer.write(john);
 
       GenericRecord bob = new GenericData.Record(schema);
-      bob.put("first_name", "Bob");
-      bob.put("last_name", "Smith");
-      bob.put("age", 45);
+      bob.put("kind", "Dog");
+      bob.put("name", "Bar");
+      bob.put("age", 4);
       writer.write(bob);
 
       System.out.println("Parquet file created successfully!");

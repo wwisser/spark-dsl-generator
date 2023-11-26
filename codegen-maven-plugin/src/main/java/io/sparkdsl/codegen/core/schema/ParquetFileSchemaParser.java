@@ -1,4 +1,4 @@
-package io.sparkdsl.core.schema;
+package io.sparkdsl.codegen.core.schema;
 
 import java.io.IOException;
 import java.util.Set;

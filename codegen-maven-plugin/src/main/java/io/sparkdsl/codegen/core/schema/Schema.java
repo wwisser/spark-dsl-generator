@@ -1,4 +1,4 @@
-package io.sparkdsl.core.schema;
+package io.sparkdsl.codegen.core.schema;
 
 import java.util.Set;
 import lombok.Value;

@@ -1,6 +1,6 @@
-package io.sparkdsl.core.generator;
+package io.sparkdsl.codegen.core.generator;
 
-import io.sparkdsl.core.schema.Schema;
+import io.sparkdsl.codegen.core.schema.Schema;
 import java.io.StringWriter;
 import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;

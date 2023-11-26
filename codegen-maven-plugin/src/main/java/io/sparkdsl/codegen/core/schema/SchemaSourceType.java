@@ -1,4 +1,4 @@
-package io.sparkdsl.core.schema;
+package io.sparkdsl.codegen.core.schema;
 
 public enum SchemaSourceType {
   SQL_FILE,
