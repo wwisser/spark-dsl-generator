@@ -6,8 +6,9 @@ import static org.apache.maven.plugins.annotations.ResolutionScope.TEST;
 import io.sparkdsl.codegen.core.classwriter.ClassWriter;
 import io.sparkdsl.codegen.core.generator.GeneratedClass;
 import io.sparkdsl.codegen.core.generator.VelocityClassGenerator;
-import io.sparkdsl.codegen.core.schema.ParquetFileSchemaParser;
 import io.sparkdsl.codegen.core.schema.Schema;
+import io.sparkdsl.codegen.core.schema.file.ParquetFileSchemaParser;
+import java.util.Set;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
@@ -30,10 +31,13 @@ public class CodegenMojo extends AbstractMojo {
 
   @Override
   public void execute() {
-    Schema schema = new ParquetFileSchemaParser().parseSchema(configFile);
-    GeneratedClass classDef = new VelocityClassGenerator().generateClass(schema);
+    Set<Schema> schemas = new ParquetFileSchemaParser().parseSchema(configFile);
 
-    new ClassWriter()
-        .writeJavaFileDef(classDef, project.getBasedir().getAbsolutePath(), TARGET_DIR);
+    for (Schema schema : schemas) {
+      GeneratedClass classDef = new VelocityClassGenerator().generateClass(schema);
+
+      new ClassWriter()
+          .writeJavaFileDef(classDef, project.getBasedir().getAbsolutePath(), TARGET_DIR);
+    }
   }
 }

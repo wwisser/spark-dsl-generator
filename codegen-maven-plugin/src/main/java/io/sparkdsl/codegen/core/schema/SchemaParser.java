@@ -1,7 +1,9 @@
 package io.sparkdsl.codegen.core.schema;
 
+import java.util.Set;
+
 public interface SchemaParser<T> {
-  Schema parseSchema(T source);
+  Set<Schema> parseSchema(T source);
 
   SchemaSourceType getSchemaSourceType();
 }

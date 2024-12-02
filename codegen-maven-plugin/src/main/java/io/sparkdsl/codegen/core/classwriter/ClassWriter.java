@@ -7,9 +7,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-/**
- * Helo
- */
 public class ClassWriter {
 
   public void writeJavaFileDef(GeneratedClass clazz, String absolutePath, String destination) {

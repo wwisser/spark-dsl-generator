@@ -1,6 +1,10 @@
-package io.sparkdsl.codegen.core.schema;
+package io.sparkdsl.codegen.core.schema.file;
 
+import io.sparkdsl.codegen.core.schema.Schema;
+import io.sparkdsl.codegen.core.schema.SchemaParser;
+import io.sparkdsl.codegen.core.schema.SchemaSourceType;
 import java.io.IOException;
+import java.util.Collections;
 import java.util.Set;
 import java.util.stream.Collectors;
 import org.apache.hadoop.conf.Configuration;
@@ -15,7 +19,7 @@ import org.apache.parquet.schema.MessageType;
 public class ParquetFileSchemaParser implements SchemaParser<String> {
 
   @Override
-  public Schema parseSchema(String filePath) {
+  public Set<Schema> parseSchema(String filePath) {
     try {
       Configuration configuration = new Configuration();
       configuration.set("fs.defaultFS", "file:///");
@@ -32,7 +36,7 @@ public class ParquetFileSchemaParser implements SchemaParser<String> {
                 .map(p -> p[0])
                 .collect(Collectors.toSet());
 
-        return new Schema(schema.getName(), fields);
+        return Collections.singleton(new Schema(schema.getName(), fields));
       }
     } catch (IOException e) {
       throw new RuntimeException("failed to parse parquet schema from file", e);
